@@ -18,10 +18,6 @@ The model is defined in the rbm.py file, together with methods for computing the
 
 - Add joint probability distribution
 
-![function1](http://latex.codecogs.com/svg.latex?x%5E%7B2%7D)
-
-<!-- e^{-E(x,h)} -->
-
 - Energy (x,h)
 
 - Free Enery (x)
