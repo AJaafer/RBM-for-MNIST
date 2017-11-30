@@ -16,7 +16,8 @@ An RBM can be considered a stochastic neural network where you have a set of vis
 
 The model is defined in the rbm.py file, together with methods for computing the probabilities and free energy of the system as well as sampling. The goal is to learn the joint probability distribution that maximizes the probability over the data, also known as likelihood.
 
-- Add joint probability distribution
+- Joint probability distribution: p(v,h)=e^{(-E(v,h))}/Z
+
 
 - Energy (x,h)
 
