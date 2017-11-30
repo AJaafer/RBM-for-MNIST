@@ -2,7 +2,7 @@
 
 TensorFlow implementation of a Bernoulli Restricted Boltzmann Machine (RBM) for MNIST.
 
-credits to [@patricieni]
+Credits to [@patricieni]
 
 ## Requirements
 - Python 2.7 or 3.5
