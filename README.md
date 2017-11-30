@@ -14,19 +14,21 @@ Credits to [@patricieni](https://github.com/patricieni/RBM-Tensorflow)
 
 ![rbm](./img/rbm.png)
 
-Restricted Boltzmann Machines are a class of undirected probabilistic graphical models where the nodes in the graph are random variables.
+Restricted Boltzmann Machines (RBMs) are a class of undirected probabilistic graphical models where the hidden and visibles nodes in the graph are random variables. In RBMs, there are no connections within a layer. 
 
-An RBM can be considered a stochastic neural network where you have a set of visible nodes that take some data as input and a set of hidden nodes that encode a lower dimensional representation of that data.
+The whole system (hidden and visible nodes) is described by an energy function:
 
-The model is defined in the rbm.py file, together with methods for computing the probabilities and free energy of the system as well as sampling. The goal is to learn the joint probability distribution that maximizes the probability over the data, also known as likelihood.
+- E(v,h) = -v^{T}Wh -v^{T}b - h^{T}c
+
+As in statistical physics, configuration with high-energy are less probable. The joint probability distribution is defined as:
 
 - Joint probability distribution: p(v,h) = e^{-E(v,h)}/Z
 
-- Energy E(v,h) = -v^{T}Wh -v^{T}b - h^{T}c
+Our goal is to learn the joint probability distribution that maximizes the probability over the data, also known as likelihood.
 
-- Free Enery p(v) = sum_{h}p(v,h} = e^{-F(v)}/Z
+- p(v) = sum_{h}p(v,h} = e^{-F(v)}/Z where F(v) is called Free Energy
 
-- Derivation
+Derive parameter update, Gibbs Sampling and Contrastive Divergence (TODO)
 
 ## Inference
 
@@ -34,11 +36,9 @@ The Conditional distribution factorizes (no intra layer connections): p(h_{j}=1|
 
 ## Learning
 
-The parameters of our model are the weights W and the biases b, c. The following image is the feature detectors map, ie t
+The parameters of our model (the weights W and the biases b, c). The following figure is a representation of the feature detectors. The hidden nodes encode a lower dimensional representation of the data (visible nodes).
 
 ![bernoulli_ft](./img/bernoulli_ft.png)
-
-Use the RBM for learning a lower dimensional representation of the MNIST dataset. You can see the reconstructions in both cases and how it's slightly better in the gaussian scenario.
 
 Contrastive divergence after 1 sampling step:
 
