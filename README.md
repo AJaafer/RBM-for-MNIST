@@ -10,7 +10,7 @@ Credits to [@patricieni]
 
 ## Usage
 
-- Run the main.ipynb file in jupyter
+Run the main.ipynb file in jupyter
 
 ## Results
 
