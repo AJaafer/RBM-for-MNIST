@@ -33,7 +33,18 @@ The Conditional distribution factorizes (no intra layer connections): p(h_{j}=1|
 The parameters of our model are the weights W and the biases b, c.
 Use the RBM for learning a lower dimensional representation of the MNIST dataset. You can see the reconstructions in both cases and how it's slightly better in the gaussian scenario.
 
+Contrastive divergence after 1 sampling step:
 
+Positive divergence: $\mathbf{v_0^T \times p(h_0|v_0)}$
+Sample hidden states from: $\mathbf{h_0 \sim p(h_0|v_0)}$.
+Reconstruct visible units: $\mathbf{v_s \sim p(v_{s})=p(v_1|h_0)}$
+Negative divergence: $\mathbf{p(v_{s})^T \times p(h_1|v_s)}$
+
+Update rules for weights and biases.
+
+$w_{new} = w_{old} + \epsilon *$ (positive divergence - negative divergence)
+$vb_{new} = vb_{old} + \epsilon * (v_0 - p(v_s))$
+$vb_{new} = vb_{old} + \epsilon * (p(h_0) - p(h_1))$
 
 ## Usage
 
