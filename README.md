@@ -16,21 +16,21 @@ An RBM can be considered a stochastic neural network where you have a set of vis
 
 The model is defined in the rbm.py file, together with methods for computing the probabilities and free energy of the system as well as sampling. The goal is to learn the joint probability distribution that maximizes the probability over the data, also known as likelihood.
 
-- Joint probability distribution: p(v,h)=e^{(-E(v,h))}/Z
+- Joint probability distribution: p(v,h) = e^{-E(v,h)}/Z
 
+- Energy E(v,h) = -v^{T}Wh -v^{T}b - h^{T}c
 
-- Energy (x,h)
-
-- Free Enery (x)
+- Free Enery p(v) = sum_{h}p(v,h} = e^{-F(v)}/Z
 
 - Derivation
 
 ## Inference
 
-- Conditional distribution (h|v)and (v|h)
+The Conditional distribution factorizes (no intra layer connections): p(h_{j}=1|v) = sigmoid(c_{j}+v^{T}W_{j}) and p(v_{i}=1|h) = sigmoid(b_{i}+Wh_{i})
 
 ## Learning
 
+The parameters of our model are the weights W and the biases b, c.
 Use the RBM for learning a lower dimensional representation of the MNIST dataset. You can see the reconstructions in both cases and how it's slightly better in the gaussian scenario.
 
 
