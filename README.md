@@ -18,6 +18,9 @@ The model is defined in the rbm.py file, together with methods for computing the
 
 - Add joint probability distribution
 
+var n = 100 // upper bound
+var sum = (n * (n + 1)) / 2
+
 - Energy (x,h)
 
 - Free Enery (x)
