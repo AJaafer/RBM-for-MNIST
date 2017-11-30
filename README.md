@@ -2,7 +2,7 @@
 
 TensorFlow implementation of a Bernoulli Restricted Boltzmann Machine (RBM) for MNIST digits reconstruction.
 
-Credits to [@patricieni]
+Credits to [@patricieni](https://github.com/patricieni/RBM-Tensorflow)
 
 ## Requirements
 - Python 2.7 or 3.5
