@@ -2,7 +2,7 @@
 
 TensorFlow implementation of a Restricted Boltzmann Machine (RBM) for MNIST digits reconstruction.
 
-![bernoulli_ft](./img/bernoulli_ft.png)
+Check this [video](https://www.youtube.com/watch?v=JKw4z2tKl_4) for some background.
 
 Credits to [@patricieni](https://github.com/patricieni/RBM-Tensorflow)
 
@@ -34,7 +34,10 @@ The Conditional distribution factorizes (no intra layer connections): p(h_{j}=1|
 
 ## Learning
 
-The parameters of our model are the weights W and the biases b, c.
+The parameters of our model are the weights W and the biases b, c. The following image is the feature detectors map, ie t
+
+![bernoulli_ft](./img/bernoulli_ft.png)
+
 Use the RBM for learning a lower dimensional representation of the MNIST dataset. You can see the reconstructions in both cases and how it's slightly better in the gaussian scenario.
 
 Contrastive divergence after 1 sampling step:
@@ -64,6 +67,6 @@ Under progress
 
 Deep Boltzmann Machines and Deep Belief Networks.
 
-Contrastive Divergence k (for k>1 step of MCMC simulation) w/ weight cost or temperature [Tieleman 08]. 
+Contrastive Divergence k (for k>1 step of MCMC simulation) w/ weight cost or temperature [Tieleman 08]. [video](https://www.youtube.com/watch?v=S0kFFiHzR8M) for Persistent Contrastive Divergence.
 
 ...
