@@ -64,8 +64,6 @@ Under progress
 
 Deep Boltzmann Machines and Deep Belief Networks.
 
-Gaussian RBM
-
 Contrastive Divergence k (for k>1 step of MCMC simulation) w/ weight cost or temperature [Tieleman 08]. 
 
 ...
