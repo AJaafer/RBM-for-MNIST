@@ -14,15 +14,15 @@ Credits to [@patricieni](https://github.com/patricieni/RBM-Tensorflow)
 
 ![rbm](./img/rbm.png)
 
-Restricted Boltzmann Machines (RBMs) are a class of undirected probabilistic graphical models where the hidden and visibles nodes in the graph are random variables. In RBMs, there are no connections within a layer. 
+Restricted Boltzmann Machines (RBMs) are a class of undirected probabilistic graphical models where the hidden and visible nodes in the graph are random variables. In RBMs, there are no connections within a layer. 
 
 The whole system (hidden and visible nodes) is described by an energy function:
 
 - E(v,h) = -v^{T}Wh -v^{T}b - h^{T}c
 
-As in statistical physics, configuration with high-energy are less probable. The joint probability distribution is defined as:
+As in statistical physics,  high-energy configurations are less probable. The joint probability distribution is defined as:
 
-- Joint probability distribution: p(v,h) = e^{-E(v,h)}/Z
+- p(v,h) = e^{-E(v,h)}/Z
 
 Our goal is to learn the joint probability distribution that maximizes the probability over the data, also known as likelihood.
 
@@ -36,7 +36,7 @@ The Conditional distribution factorizes (no intra layer connections): p(h_{j}=1|
 
 ## Learning
 
-The parameters of our model (the weights W and the biases b, c). The following figure is a representation of the feature detectors. The hidden nodes encode a lower dimensional representation of the data (visible nodes).
+The parameters of our model are the weights W and the biases b, c. The following figure is a representation of the feature detectors. The hidden nodes encode a lower dimensional representation of the data (visible nodes).
 
 ![bernoulli_ft](./img/bernoulli_ft.png)
 
