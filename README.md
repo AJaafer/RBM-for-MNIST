@@ -1,0 +1,1 @@
+# bernoulli-RBM-for-MNIST
