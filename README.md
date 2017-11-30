@@ -12,6 +12,8 @@ Credits to [@patricieni](https://github.com/patricieni/RBM-Tensorflow)
 
 ## RBM Graphical Model
 
+![rbm](./img/rbm.png)
+
 Restricted Boltzmann Machines are a class of undirected probabilistic graphical models where the nodes in the graph are random variables.
 
 An RBM can be considered a stochastic neural network where you have a set of visible nodes that take some data as input and a set of hidden nodes that encode a lower dimensional representation of that data.
