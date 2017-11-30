@@ -4,16 +4,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def sample(probabilities):
+def sample(probabilities, mode='bernoulli'):
     ''' Sample a tensor based on the probabilities (A tensor given by get_probabilities)'''
-    return tf.floor(probabilities + tf.random_uniform(tf.shape(probabilities), 0, 1))
+    if mode=='bernoulli':
+        return tf.floor(probabilities + tf.random_uniform(tf.shape(probabilities), 0, 1))
+    elif mode=='gaussian':
+        return tf.add(probabilities, tf.random_normal(tf.shape(probabilities), mean=0.0, stddev=1.)) # Add noise to the original probabilities
+
 
 
 # Simple RBM class
 # Designed to be modular, should attach the weights as well, will be helpful when dealing with DBM
 class RBM:
-    def __init__(self, n_visible, n_hidden, lr, epochs, batch_size=None):
+    def __init__(self, n_visible, n_hidden, lr, epochs, mode='bernoulli', batch_size=None):
         ''' Initialize a model for an RBM with one layer of hidden units '''
+        self.mode = mode # bernoulli or gaussian RBM
         self.n_hidden = n_hidden #  Number of hidden nodes
         self.n_visible = n_visible # Number of visible nodes
         self.lr = lr # Learning rate for the CD algorithm
@@ -33,7 +38,11 @@ class RBM:
         # val: Input units, hidden or visible as binary or float
         if layer == 'hidden':
             with tf.name_scope("Hidden_Probabilities"):
-                return tf.nn.sigmoid(tf.matmul(val, self.W) + self.hb)
+                if self.mode=='bernoulli':
+                    return tf.nn.sigmoid(tf.matmul(val, self.W) + self.hb)
+                elif self.mode=='gaussian':
+                    return tf.matmul(val, self.W) + self.hb
+
         elif layer == 'visible':
             with tf.name_scope("Visible_Probabilities"):
                 return tf.nn.sigmoid(tf.matmul(val, tf.transpose(self.W)) + self.vb)
@@ -44,7 +53,7 @@ class RBM:
         with tf.name_scope("Gibbs_sampling"):
             for i in range(steps): # Number of steps to run the algorithm
                 hidden_p = self.get_probabilities('hidden', v) # v: input data
-                h = sample(hidden_p)
+                h = sample(hidden_p, mode=self.mode)
 
                 visible_p = self.get_probabilities('visible', h)
                 v = visible_p
@@ -66,3 +75,11 @@ class RBM:
         x_b = tf.matmul(v, self.W) + self.hb
         hidden_term = tf.reduce_sum(tf.log(1 + tf.exp(x_b)))
         return - hidden_term - vbias_term
+
+
+    def get_feature_map(self):
+        ''' Return hidden features'''
+        ft_map = {}
+        for k in range(self.n_hidden):
+            ft_map[k] = self.get_probabilities('visible', tf.expand_dims(tf.one_hot(k+1, self.n_hidden),0))
+        return ft_map
