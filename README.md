@@ -1,6 +1,8 @@
-# Bernoulli Restricted Boltzmann Machine (RBM) for MNIST reconstruction
+# Restricted Boltzmann Machine (RBM) for MNIST reconstruction
 
-TensorFlow implementation of a Bernoulli Restricted Boltzmann Machine (RBM) for MNIST digits reconstruction.
+TensorFlow implementation of a Restricted Boltzmann Machine (RBM) for MNIST digits reconstruction.
+
+![bernoulli_ft](./img/bernoulli_ft.png)
 
 Credits to [@patricieni](https://github.com/patricieni/RBM-Tensorflow)
 
@@ -53,6 +55,8 @@ Run the main.ipynb file in jupyter
 ## Results
 
 Under progress
+
+![recon2](./img/recon2.png)
 
 ## Extensions
 
