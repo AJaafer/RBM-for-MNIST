@@ -58,7 +58,8 @@ Idea:
 - Positive divergence: $h(v)v^{T}$
 - Negative divergence: $h(v')v'^{T}$ where v' is reconstructed from a sample from h(v)
 
-Pseudocode:
+### Pseudocode:
+
 1. For each training example v(t):
 
   i. Generate a negative sample v' using k steps of Gibbs Sampling, starting at v(t)
