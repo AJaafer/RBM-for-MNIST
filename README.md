@@ -62,9 +62,9 @@ Idea:
 
 1. For each training example v(t):
 
-  i. Generate a negative sample v' using k steps of Gibbs Sampling, starting at v(t)
+    i. Generate a negative sample v' using k steps of Gibbs Sampling, starting at v(t)
   
-  ii. Update parameters
+    ii. Update parameters
   
   $w_{new} = w_{old} + \epsilon * (h(v(t))v(t)^{T}-h(v')v'^{T}) $
   
