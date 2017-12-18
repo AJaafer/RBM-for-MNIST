@@ -54,18 +54,9 @@ Idea:
 2. Obtain the point v' by Gibbs Sampling
 3. Start sampling chain at v(t)
 
-Contrastive divergence after 1 sampling step:
-
-Positive divergence: $\mathbf{v_0^T \times p(h_0|v_0)}$ = 
-Sample hidden states from: $\mathbf{h_0 \sim p(h_0|v_0)}$.
-Reconstruct visible units: $\mathbf{v_s \sim p(v_{s})=p(v_1|h_0)}$
-Negative divergence: $\mathbf{p(v_{s})^T \times p(h_1|v_s)}$
-
-Update rules for weights and biases.
-
-$w_{new} = w_{old} + \epsilon *$ (positive divergence - negative divergence)
-$vb_{new} = vb_{old} + \epsilon * (v_0 - p(v_s))$
-$vb_{new} = vb_{old} + \epsilon * (p(h_0) - p(h_1))$
+1-step divergence:
+- Positive divergence: $h(v)v^{T}$
+- Negative divergence: $h(v')v'^{T}$ where v' is reconstructed from a sample from h(v)
 
 Pseudocode:
 1. For each training example v(t):
