@@ -29,8 +29,6 @@ Our goal is to learn the joint probability distribution that maximizes the proba
 
 - p(v) = sum_{h}p(v,h} = e^{-F(v)}/Z where F(v) is called Free Energy
 
-Derive parameter update, Gibbs Sampling and Contrastive Divergence (TODO)
-
 ## Inference
 
 The Conditional distribution factorizes (no intra layer connections):
@@ -45,7 +43,7 @@ The parameters of our model are the weights W and the biases b, c.
 
 ### Maximizing the log-Likelihood
 
-Derive log-likelihood and gradient formulas.
+Derive log-likelihood and gradient formulas. (TODO)
 
 it is impractical to compute the exact log-likelihood gradient (expectation of the joint distribution).
 
@@ -71,11 +69,16 @@ $vb_{new} = vb_{old} + \epsilon * (p(h_0) - p(h_1))$
 
 Pseudocode:
 1. For each training example v(t):
+
   i. Generate a negative sample v' using k steps of Gibbs Sampling, starting at v(t)
+  
   ii. Update parameters
-  $w_{new} = w_{old} + \epsilon * (h(v(t))v(t)^{T}-h(v')v'^{T}) $
-  $b_{new} = b_{old} + \epsilon * (h(v(t))-h(v'))$
-  $c_{new} = c_{old} + \epsilon * (v(t)-v')$
+  
+    $w_{new} = w_{old} + \epsilon * (h(v(t))v(t)^{T}-h(v')v'^{T}) $
+  
+    $b_{new} = b_{old} + \epsilon * (h(v(t))-h(v'))$
+  
+    $c_{new} = c_{old} + \epsilon * (v(t)-v')$
  
 2. Go back to 1. until stoppng criteria
 
