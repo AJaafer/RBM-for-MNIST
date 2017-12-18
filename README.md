@@ -14,7 +14,12 @@ Credits to [@patricieni](https://github.com/patricieni/RBM-Tensorflow)
 
 ![rbm](./img/rbm.png)
 
-Restricted Boltzmann Machines (RBMs) are a class of undirected probabilistic graphical models where the hidden and visible nodes in the graph are random variables. In RBMs, there are no connections within a layer. 
+Restricted Boltzmann Machines (RBMs) are a class of undirected probabilistic graphical models containing a layer of observable variables (visible nodes) and a single layer of latent variables (hidden nodes in the graph). In RBMs, there are no connections within a layer. 
+
+
+
+
+
 
 The whole system (hidden and visible nodes) is described by an energy function:
 
