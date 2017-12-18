@@ -14,11 +14,7 @@ Credits to [@patricieni](https://github.com/patricieni/RBM-Tensorflow)
 
 ![rbm](./img/rbm.png)
 
-Restricted Boltzmann Machines (RBMs) are a class of undirected probabilistic graphical models containing a layer of observable variables (visible nodes) and a single layer of latent variables (hidden nodes in the graph). In RBMs, there are no connections within a layer. 
-
-
-
-
+Restricted Boltzmann Machines (RBMs) are a class of undirected probabilistic graphical models containing a layer of observable variables and a single layer of latent variables. In RBMs, there are no connections within a layer. 
 
 
 The whole system (hidden and visible nodes) is described by an energy function:
@@ -27,7 +23,7 @@ The whole system (hidden and visible nodes) is described by an energy function:
 
 As in statistical physics,  high-energy configurations are less probable. The joint probability distribution is defined as:
 
-- p(v,h) = e^{-E(v,h)}/Z
+- p(v,h) = e^{-E(v,h)}/Z where Z is the partition function (intractable)
 
 Our goal is to learn the joint probability distribution that maximizes the probability over the data, also known as likelihood.
 
@@ -37,17 +33,32 @@ Derive parameter update, Gibbs Sampling and Contrastive Divergence (TODO)
 
 ## Inference
 
-The Conditional distribution factorizes (no intra layer connections): p(h_{j}=1|v) = sigmoid(c_{j}+v^{T}W_{j}) and p(v_{i}=1|h) = sigmoid(b_{i}+Wh_{i})
+The Conditional distribution factorizes (no intra layer connections):
+
+- p(h_{j}=1|v) = p(h_{j}=1, v) / ( p(h_{j}=0, v) + p(h_{j}=1, v) ) = sigmoid(c_{j}+v^{T}W_{:j})
+
+- p(v_{i}=1|h) = sigmoid(b_{i}+W_{i:}h)
 
 ## Learning
 
-The parameters of our model are the weights W and the biases b, c. The following figure is a representation of the feature detectors. The hidden nodes encode a lower dimensional representation of the data (visible nodes).
+The parameters of our model are the weights W and the biases b, c. 
 
-![bernoulli_ft](./img/bernoulli_ft.png)
+### Maximizing the log-Likelihood
+
+Derive log-likelihood and gradient formulas.
+
+it is impractical to compute the exact log-likelihood gradient (expectation of the joint distribution).
+
+### Contrastive divergence
+
+Idea:
+1. Replace the expectation by a point estimate at v'
+2. Obtain the point v' by Gibbs Sampling
+3. Start sampling chain at v(t)
 
 Contrastive divergence after 1 sampling step:
 
-Positive divergence: $\mathbf{v_0^T \times p(h_0|v_0)}$
+Positive divergence: $\mathbf{v_0^T \times p(h_0|v_0)}$ = 
 Sample hidden states from: $\mathbf{h_0 \sim p(h_0|v_0)}$.
 Reconstruct visible units: $\mathbf{v_s \sim p(v_{s})=p(v_1|h_0)}$
 Negative divergence: $\mathbf{p(v_{s})^T \times p(h_1|v_s)}$
@@ -57,6 +68,21 @@ Update rules for weights and biases.
 $w_{new} = w_{old} + \epsilon *$ (positive divergence - negative divergence)
 $vb_{new} = vb_{old} + \epsilon * (v_0 - p(v_s))$
 $vb_{new} = vb_{old} + \epsilon * (p(h_0) - p(h_1))$
+
+Pseudocode:
+1. For each training example v(t):
+  i. Generate a negative sample v' using k steps of Gibbs Sampling, starting at v(t)
+  ii. Update parameters
+  $w_{new} = w_{old} + \epsilon * (h(v(t))v(t)^{T}-h(v')v'^{T}) $
+  $b_{new} = b_{old} + \epsilon * (h(v(t))-h(v'))$
+  $c_{new} = c_{old} + \epsilon * (v(t)-v')$
+ 
+2. Go back to 1. until stoppng criteria
+
+
+The following figure is a representation of the feature detectors. The hidden nodes encode a lower dimensional representation of the data (visible nodes).
+
+![bernoulli_ft](./img/bernoulli_ft.png)
 
 ## Usage
 
