@@ -4,8 +4,6 @@ TensorFlow implementation of a Restricted Boltzmann Machine (RBM) for MNIST digi
 
 Check this [video](https://www.youtube.com/watch?v=JKw4z2tKl_4) for some background.
 
-Credits to [@patricieni](https://github.com/patricieni/RBM-Tensorflow)
-
 ## Requirements
 - Python 2.7 or 3.5
 - [TensorFlow 1.0.1+](https://www.tensorflow.org/install/)
