@@ -66,11 +66,11 @@ Idea:
   
   ii. Update parameters
   
-    $w_{new} = w_{old} + \epsilon * (h(v(t))v(t)^{T}-h(v')v'^{T}) $
+  $w_{new} = w_{old} + \epsilon * (h(v(t))v(t)^{T}-h(v')v'^{T}) $
   
-    $b_{new} = b_{old} + \epsilon * (h(v(t))-h(v'))$
+  $b_{new} = b_{old} + \epsilon * (h(v(t))-h(v'))$
   
-    $c_{new} = c_{old} + \epsilon * (v(t)-v')$
+  $c_{new} = c_{old} + \epsilon * (v(t)-v')$
  
 2. Go back to 1. until stoppng criteria
 
